@@ -78,6 +78,16 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--        Distributed tracing-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -148,22 +158,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-<!--        Zipkin/Sleuth-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-        </dependency>
 <!--        Logging-->
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>7.0</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -233,6 +233,12 @@
                         <enabled>true</enabled>
                         <includeLayerTools>true</includeLayerTools>
                     </layers>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 
